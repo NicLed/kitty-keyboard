@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Key from "./Key";
 import styled from "styled-components";
 import A from '../Anisah_Meows/A_Meow.mp3';
@@ -14,6 +14,7 @@ import F from '../Anisah_Meows/F_Meow.mp3';
 import G from '../Anisah_Meows/G_Meow.mp3';
 import Gb from '../Anisah_Meows/Gb_Meow.mp3';
 import Middle_C from '../Anisah_Meows/Middle_C_Meow.mp3';
+import { useKeyState } from 'use-key-state';
 
 const KeyContainer = styled.div`
   display: flex;
@@ -22,10 +23,38 @@ const KeyContainer = styled.div`
 `;
 
 const Piano = (props) => {
+  const { ...keys } = useKeyState({
+    a: "a",
+    w: "w",
+    s: "s",
+    e: "e",
+    d: "d",
+    f: "f",
+    y: "y",
+    h: "h",
+    u: "u",
+    j: "j",
+    i: "i",
+    k: "k",
+    l: "l"
+  }, { ignoreRepeatEvents: false});
+
+  const [playing, setPlaying] = useState(false);
   const Notes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C']
   const noteSounds = [Middle_C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B, C]
 
+  React.useLayoutEffect(() => {
+    noteSounds.forEach((_, i) => {
+      const key = Object.keys(keys)[i];
+      const down = keys[key].down;
+      // const pressed = keys[key].pressed;
+      const audio = new Audio(noteSounds[i])
 
+      if (down) {
+        audio.play()
+      }
+    })
+  })
 
   return (
     <div>
@@ -34,10 +63,11 @@ const Piano = (props) => {
           const audio = new Audio(noteSounds[i]);
 
           const playNote = () => {
+            // audio.current()
             audio.play();
           }
 
-          return (<Key note={note} key={i} play={() => playNote() } />)
+          return (<Key note={note} key={i} play={() => playNote()} playing={playing} setPlaying={setPlaying} />)
         })}
       </KeyContainer>
     </div>

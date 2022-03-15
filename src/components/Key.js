@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import { useKeyState } from 'use-key-state';
 
 
 const WhiteKey = styled.div`
@@ -35,15 +36,30 @@ const KeyText = styled.div`
   pointer-events: none;
 `
 
-const Key = (props) => {
+const Key = ({ note, play, playing, setPlaying }) => {
+  // const [aPressed, setAPressed] = useState('up');
 
+
+  // useKeyState.on('a', down => {
+  //   setAPressed('down', () => {
+  //     if ('down') {
+
+  //     } else {
+
+  //     }
+  //   })
+  // })
+
+  const handleClick = (event) => {
+    play()
+  }
 
   return (
     <div>
-      {props.note.includes('b') ?
-        <BlackKey onClick={props.play} ></BlackKey>
-        : <WhiteKey onClick={props.play} >
-          <KeyText>{props.note}</KeyText>
+      {note.includes('b') ?
+        <BlackKey onClick={handleClick} ></BlackKey>
+        : <WhiteKey onClick={handleClick} >
+          <KeyText>{note}</KeyText>
         </WhiteKey>}
     </div>
   )
