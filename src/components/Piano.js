@@ -30,13 +30,13 @@ const Piano = (props) => {
     e: "e",
     d: "d",
     f: "f",
+    t: "t",
+    g: "g",
     y: "y",
     h: "h",
     u: "u",
     j: "j",
-    i: "i",
-    k: "k",
-    l: "l"
+    k: "k"
   }, { ignoreRepeatEvents: false});
 
   const [playing, setPlaying] = useState(false);

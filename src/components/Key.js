@@ -11,6 +11,9 @@ const WhiteKey = styled.div`
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   cursor: pointer;
+  :active {
+    background-color: grey;
+  }
 `
 
 const BlackKey = styled.div`
@@ -25,6 +28,9 @@ const BlackKey = styled.div`
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   cursor: pointer;
+  :active {
+    background-color: grey;
+  }
 `
 
 const KeyText = styled.div`
@@ -37,28 +43,12 @@ const KeyText = styled.div`
 `
 
 const Key = ({ note, play, playing, setPlaying }) => {
-  // const [aPressed, setAPressed] = useState('up');
-
-
-  // useKeyState.on('a', down => {
-  //   setAPressed('down', () => {
-  //     if ('down') {
-
-  //     } else {
-
-  //     }
-  //   })
-  // })
-
-  const handleClick = (event) => {
-    play()
-  }
 
   return (
     <div>
       {note.includes('b') ?
-        <BlackKey onClick={handleClick} ></BlackKey>
-        : <WhiteKey onClick={handleClick} >
+        <BlackKey onClick={play} ></BlackKey>
+        : <WhiteKey onClick={play} >
           <KeyText>{note}</KeyText>
         </WhiteKey>}
     </div>
