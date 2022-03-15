@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 const WhiteKey = styled.div`
   background-color: ivory;
   height: 300px;
@@ -36,11 +37,12 @@ const KeyText = styled.div`
 
 const Key = (props) => {
 
+
   return (
     <div>
-      {props.note.includes('#') ?
-        <BlackKey></BlackKey>
-        : <WhiteKey>
+      {props.note.includes('b') ?
+        <BlackKey onClick={props.play} ></BlackKey>
+        : <WhiteKey onClick={props.play} >
           <KeyText>{props.note}</KeyText>
         </WhiteKey>}
     </div>
