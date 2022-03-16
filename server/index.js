@@ -10,6 +10,12 @@ app.get('/meows', (req, res) => {
       res.status(200).send(response.data);
     })
     .catch((err) => {
-      console.error(err);
+      console.error('HIIII');
     });
 })
+
+const PORT = 3030;
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}...`);
+});

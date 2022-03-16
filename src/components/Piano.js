@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import Key from "./Key";
 import styled from "styled-components";
 import A from "../Anisah_Meows/A_Meow.mp3";
@@ -63,8 +64,8 @@ const Piano = (props) => {
       // play sound associated with those keys
     // else
       // stop
-
-  // }, [activeKeys])
+    // getMeows();
+  // }, []) // activeKeys?
 
   const states = [
     playingC,
@@ -130,7 +131,20 @@ const Piano = (props) => {
     C: C
   };
 
+  // Note sounds to iterate over
   const noteSounds = [notes.Middle_C, notes.Db, notes.D, notes.Eb, notes.E, notes.F, notes.Gb, notes.G, notes.Ab, notes.A, notes.Bb, notes.B, notes.C];
+
+  // GET meows from database
+  // const getMeows = () => {
+  //   axios.get('/meows')
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // };
+
 
   React.useLayoutEffect(() => {
     noteSounds.forEach((_, i) => {
