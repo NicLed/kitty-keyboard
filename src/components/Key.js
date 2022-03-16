@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useKeyState } from 'use-key-state';
 
 
 const WhiteKey = styled.div`
@@ -14,6 +13,7 @@ const WhiteKey = styled.div`
   :active {
     background-color: grey;
   }
+  ${({ playing }) => playing && `background: grey;`}
 `
 
 const BlackKey = styled.div`
@@ -31,6 +31,7 @@ const BlackKey = styled.div`
   :active {
     background-color: grey;
   }
+  ${({ playing }) => playing && `background: grey;`}
 `
 
 const KeyText = styled.div`
@@ -42,13 +43,13 @@ const KeyText = styled.div`
   pointer-events: none;
 `
 
-const Key = ({ note, play, playing, setPlaying }) => {
+const Key = ({ note, play, stop, playing, setPlaying }) => {
 
   return (
     <div>
       {note.includes('b') ?
-        <BlackKey onClick={play} ></BlackKey>
-        : <WhiteKey onClick={play} >
+        <BlackKey onMouseDown={play} onMouseUp={stop} playing={playing} ></BlackKey>
+        : <WhiteKey onMouseDown={play} onMouseUp={stop} playing={playing} >
           <KeyText>{note}</KeyText>
         </WhiteKey>}
     </div>
