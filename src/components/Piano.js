@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import React, { useState } from "react";
+// import axios from 'axios';
 import Key from "./Key";
 import styled from "styled-components";
 import A from "../Anisah_Meows/A_Meow.mp3";
@@ -40,7 +40,7 @@ const Piano = (props) => {
       j: "j",
       k: "k",
     },
-    { ignoreRepeatEvents: true }
+    { ignoreRepeatEvents: false }
   );
 
   // const [activeKeys, setActiveKeys] = useState({});
@@ -67,21 +67,7 @@ const Piano = (props) => {
     // getMeows();
   // }, []) // activeKeys?
 
-  const states = [
-    playingC,
-    playingDb,
-    playingD,
-    playingEb,
-    playingE,
-    playingF,
-    playingGb,
-    playingG,
-    playingAb,
-    playingA,
-    playingBb,
-    playingB,
-    playingMiddleC,
-  ];
+  const states = [playingC, playingDb, playingD, playingEb, playingE,playingF, playingGb, playingG, playingAb, playingA, playingBb, playingB, playingMiddleC];
 
   const stateSetters = [
     setPlayingC,
@@ -99,21 +85,7 @@ const Piano = (props) => {
     setPlayingMiddleC,
   ];
 
-  const Notes = [
-    "C",
-    "Db",
-    "D",
-    "Eb",
-    "E",
-    "F",
-    "Gb",
-    "G",
-    "Ab",
-    "A",
-    "Bb",
-    "B",
-    "C",
-  ];
+  const Notes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C"];
 
   const notes = {
     Middle_C: Middle_C,
@@ -161,6 +133,7 @@ const Piano = (props) => {
 
       if (up) {
         stateSetters[i](false);
+        audio.pause()
       }
     });
   });

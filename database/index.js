@@ -8,7 +8,7 @@ const meowSchema = mongoose.Schema({
 
 const Meow = mongoose.model('Meow', meowSchema);
 
-const getMeows = (data) => {
+const getMeows = () => {
   return Meow.find({});
 }
 

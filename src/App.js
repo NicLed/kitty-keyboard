@@ -1,6 +1,8 @@
+import React, { useEffect } from 'react';
 import './App.css';
 import Piano from './components/Piano';
 import styled from 'styled-components';
+import axios from 'axios';
 
 // const StyleForm = styled.form`
 //   color: white;
@@ -13,9 +15,24 @@ const PageTitle = styled.h1`
 `
 
 function App() {
+
+  useEffect(() => {
+    getMeows();
+  }, []);
+
+  const getMeows = () => {
+    axios.get('/meows')
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <div className="App">
-        <PageTitle>😸 Kitty Keyboard 😸</PageTitle>
+        <PageTitle>Kitty Keyboard</PageTitle>
         {/* <StyleForm>
           <div>Login:</div>
           <label>Username:
